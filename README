@@ -1,6 +1,5 @@
 AUTHOR: Angelica Morriesette
 EMAIL: afmorriesette@gmail.com
-DATE: 4/17/16
 VERSION: 1.0
 
 
@@ -24,27 +23,12 @@ address
 6. I can mark an address as invalid
 7. The code is well tested and covered with meaningful unit tests
 
-Additional Note
-===============
-Please refrain from using App exchange apps or declarative features such as formula fields,
-rollup summary fields or workflow for this answer. Please use only Apex, VF, JS, etc.
-You’ll notice some items are missing and some questions left unanswered such as: What
-happens when you expire an address and there is no record for that block of time?
-We’re not looking for production ­ready code, but rather a workable starting architecture and
-design, code that meet the acceptance criteria as best as possible, and a list of outstanding issues
-needing to still be resolved or left unclear in the user ­acceptance criteria or user story.
-
-
 
 Implementation
 ==============
 Languages: Javscript, HTML
 Frameworks: Angularjs, jquery, bootstrap
 Files: index.html, styles.css, controller.js, Readme
-
-  - Given the time constraints, I decided to keep the implementation simple. The "Morriesette Household"
-    page is a sub-record only dealing with seasonal addresses that would likely be apart of an individual or
-    company's record containing much more information.
 
   - The Address record will be displayed in the format below:
       ACTIVATED  |  ADDRESS NAME  |  ADDRESS  |  ACTIVE MONTH  |  EXPIRATION MONTH  | MODIFY
