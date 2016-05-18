@@ -3,7 +3,7 @@
 var household = angular.module('householdApp', []);
 household.controller('householdCtrl', function($scope){
     $scope.household = [];
-
+    $scope.currentDate = "test";
 // Initialize an empty array full of 0's
     var activeMonthArray = [];
     for(var i=0; i<=12; i++){
@@ -72,7 +72,8 @@ household.controller('householdCtrl', function($scope){
       if(month < 10){ month = '0' + month};
       var day = today.getDate();
       var date = month + '/' + day + "/" + year;
-      $('#currentDate').text('Current Date: ' + date);
+      $scope.currentDate = 'Current Date: ';
+      //$('#currentDate').text('Current Date: ' + date);
     }();
 
 
@@ -93,7 +94,8 @@ household.controller('householdCtrl', function($scope){
       if(month < 10){ month = '0' + month};
       var day = today.getDate();
       var date = month + '/' + day + "/" + year;
-      $('#currentDate').text('Current Date: ' + date);
+      $scope.currentDate = 'Current Date: ';
+      //$('#currentDate').text('Current Date: ' + date);
     }
 
 
