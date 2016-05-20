@@ -72,7 +72,7 @@ household.controller('householdCtrl', function($scope){
       if(month < 10){ month = '0' + month};
       var day = today.getDate();
       var date = month + '/' + day + "/" + year;
-      $scope.currentDate = 'Current Date: ';
+      $scope.currentDate = 'Current Date: ' + date;
       //$('#currentDate').text('Current Date: ' + date);
     }();
 
@@ -94,7 +94,7 @@ household.controller('householdCtrl', function($scope){
       if(month < 10){ month = '0' + month};
       var day = today.getDate();
       var date = month + '/' + day + "/" + year;
-      $scope.currentDate = 'Current Date: ';
+      $scope.currentDate = 'Current Date: ' + date;
       //$('#currentDate').text('Current Date: ' + date);
     }
 
@@ -180,32 +180,6 @@ household.controller('householdCtrl', function($scope){
           }
         }
       }
-
-
-// Pre-populates the text fields for editing and replaces the old info with the new info
-      $scope.editAddress = function(items){
-        $('#newAddressOverlay').modal('show');
-        var type = items.type;
-        var address = items.address;
-        var addressArray = address.split(',');
-        var stName = addressArray[0];
-        var city = addressArray[1];
-        var stateZip = addressArray[2].split(' ');
-        var state = stateZip[1];
-        var zip = stateZip[2];
-        var dateTo = items.endDate;
-        var dateFrom = items.startDate;
-
-        var inputTypes = ["type", "stName", "city", "state","zip","dateTo","dateFrom"];
-        var inputTypesDot = [".type", ".stName", ".city", ".state",".zip",".dateTo",".dateFrom"];
-
-        for(var i=0; i<=inputTypes.length; i++){
-          var inputVal = eval(inputTypes[i]);
-          $(inputTypesDot[i]).val(inputVal);
-        }
-        removeFromActiveArray(monthsList[item.startDate], monthsList[item.endDate]);
-      }
-
 
 // Removes address from the activeArray but keeps the object visible in the UI
     $scope.activateAddr = function(items){
