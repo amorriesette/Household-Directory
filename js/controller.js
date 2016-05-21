@@ -111,33 +111,33 @@ household.controller('householdCtrl', function($scope){
 
 // Adds a new address to the database
   $scope.newAddress = function(){
-      var addAddress = document.querySelector('.modal');
-      var type = addAddress.querySelector('.type');
-      var stName = addAddress.querySelector('.stName');
-      var city = addAddress.querySelector('.city');
-      var state = addAddress.querySelector('.state');
-      var zip = addAddress.querySelector('.zip');
-      var dateFrom = addAddress.querySelector('.dateFrom');
-      var dateTo = addAddress.querySelector('.dateTo');
+      //var addAddress = document.querySelector('.modal');
+      var type = $scope.type;
+      var stName = $scope.stName;
+      var city = $scope.city;
+      var state = $scope.state;
+      var zip = $scope.zip;
+      var dateFrom = $scope.dateFrom;
+      var dateTo = $scope.dateTo;
 
-      var newRecord = $scope.validateMonths(monthsList[dateFrom.value], monthsList[dateTo.value]);
+      var newRecord = $scope.validateMonths(monthsList[dateFrom], monthsList[dateTo]);
       if(newRecord || overrideFlag == 1){
-        var newAddress = stName.value +', ' + city.value+', '+state.value+" "+ zip.value;
+        var newAddress = stName +', ' + city+', '+state+" "+ zip;
         if(overrideFlag == 1){
-          $scope.deactivateDuplicate(monthsList[dateFrom.value], monthsList[dateTo.value], newAddress);
+          $scope.deactivateDuplicate(monthsList[dateFrom], monthsList[dateTo], newAddress);
           overrideFlag = 0;
         }
         eval('$scope.household').push({
-            type: type.value,
+            type: type,
             address: newAddress,
-            city: city.value,
-            state: state.value,
-            zip: zip.value,
-            startDate: dateFrom.value,
-            endDate: dateTo.value,
+            city: city,
+            state: state,
+            zip: zip,
+            startDate: dateFrom,
+            endDate: dateTo,
             activate:true
         });
-        $scope.addToActiveArray(monthsList[dateFrom.value], monthsList[dateTo.value], newAddress);
+        $scope.addToActiveArray(monthsList[dateFrom], monthsList[dateTo], newAddress);
         $scope.clearForm();
       }else{
         $("#errorMsg").removeClass('ng-hide');
@@ -163,18 +163,24 @@ household.controller('householdCtrl', function($scope){
           if($scope.household[i] === items){
             var item = $scope.household[i];
             if(item.activate){
+              console.log("removed from active array");
+              console.log(monthsList[item.startDate], monthsList[item.endDate]);
+              console.log(item.startDate + " " + item.endDate);
               $scope.removeFromActiveArray(monthsList[item.startDate], monthsList[item.endDate]);
               $('#activateCheck').checked=false;
               item.activate = false;
+              console.log(activeMonthArray);
             }else{
               var validate = $scope.validateMonths(monthsList[item.startDate], monthsList[item.endDate]);
               if(validate){
+                console.log("added to active array");
                 $scope.addToActiveArray(monthsList[item.startDate], monthsList[item.endDate], item.address);
                 $('#activateCheck').checked=true;
                 item.activate = true;
+                console.log(activeMonthArray);
               }else{
-                event.preventDefault();
-                $('#activateCheck').checked=false;
+                console.log('there is a current value in array location');
+                console.log(activeMonthArray);
               }
             }
           }
